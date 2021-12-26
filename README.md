@@ -1,5 +1,6 @@
 # shamo
 
+E-commerce app course from builtwithangga course
 A new Flutter project.
 
 ## Getting Started
