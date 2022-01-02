@@ -297,21 +297,18 @@ class SignUpPage extends StatelessWidget {
           margin: EdgeInsets.symmetric(
             horizontal: defaultMargin,
           ),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                header(),
-                fullNameInput(),
-                userNameInput(),
-                emailInput(),
-                passwordInput(),
-                signInButton(),
-                Spacer(),
-                footer(),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              header(),
+              fullNameInput(),
+              userNameInput(),
+              emailInput(),
+              passwordInput(),
+              signInButton(),
+              Spacer(),
+              footer(),
+            ],
           ),
         ),
       ),

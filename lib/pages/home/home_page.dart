@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo/pages/widgets/new_arrival_page.dart';
 import 'package:shamo/pages/widgets/product_cards.dart';
 import 'package:shamo/theme.dart';
 
@@ -165,6 +166,22 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget newArrivalTitle() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: 20,
+          left: defaultMargin,
+        ),
+        child: Text(
+          'New Arrival',
+          style: primaryTextStyle.copyWith(
+            fontSize: 24,
+            fontWeight: semibold,
+          ),
+        ),
+      );
+    }
+
     Widget popularProductContent() {
       return Container(
         margin: EdgeInsets.only(top: 14),
@@ -188,12 +205,27 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget newArrivalContent() {
+      return Container(
+        margin: EdgeInsets.only(top: 14),
+        child: Column(
+          children: [
+            NewArrivalPage(),
+            NewArrivalPage(),
+            NewArrivalPage(),
+          ],
+        ),
+      );
+    }
+
     return ListView(
       children: [
         header(),
         categories(),
         popularProductTitle(),
         popularProductContent(),
+        newArrivalTitle(),
+        newArrivalContent()
       ],
     );
   }
