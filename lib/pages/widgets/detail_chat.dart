@@ -151,6 +151,7 @@ class DetailChat extends StatelessWidget {
           ChatBubble(
             isSender: false,
             text: 'Good Night, This item is only available in size 40?',
+            hasProduct: true,
           ),
         ],
       );
