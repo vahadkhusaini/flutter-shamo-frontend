@@ -8,7 +8,6 @@ class WishlistCard extends StatelessWidget {
       margin: EdgeInsets.only(
         top: 20,
       ),
-      padding: EdgeInsets.only(top: 10, left: 12, bottom: 14, right: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: backgroundColor4,
