@@ -5,8 +5,6 @@ class CartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 315,
-      height: 110,
       margin: EdgeInsets.only(top: defaultMargin),
       padding: EdgeInsets.symmetric(
         horizontal: 16,
@@ -16,38 +14,87 @@ class CartCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         color: backgroundColor4,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/image_shoes.png',
+      child: Column(children: [
+        Row(
+          children: [
+            Container(
               width: 60,
-            ),
-          ),
-          SizedBox(
-            width: 12,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Adidas NEO',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: semibold,
+              height: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/image_shoes.png',
                   ),
                 ),
+              ),
+            ),
+            SizedBox(
+              width: 12,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Tereex Urban Low',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: semibold,
+                    ),
+                  ),
+                  Text(
+                    '\$143,98',
+                    style: priceTextStyle,
+                  )
+                ],
+              ),
+            ),
+            Column(
+              children: [
+                Image.asset(
+                  'assets/button_add.png',
+                  width: 16,
+                ),
+                SizedBox(
+                  height: 2,
+                ),
                 Text(
-                  '\$145,89',
-                  style: priceTextStyle,
+                  '2',
+                  style: primaryTextStyle.copyWith(fontWeight: medium),
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Image.asset(
+                  'assets/button_min.png',
+                  width: 16,
                 )
               ],
+            )
+          ],
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        Row(
+          children: [
+            Image.asset(
+              'assets/icon_remove.png',
+              width: 10,
             ),
-          ),
-        ],
-      ),
+            SizedBox(
+              width: 4,
+            ),
+            Text(
+              'Remove',
+              style: alertTextStyle.copyWith(
+                fontSize: 12,
+                fontWeight: light,
+              ),
+            )
+          ],
+        )
+      ]),
     );
   }
 }
