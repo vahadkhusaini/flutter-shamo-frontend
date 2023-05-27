@@ -1,27 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shamo/pages/widgets/loading_button.dart';
 import 'package:shamo/provider/auth_provider.dart';
 import 'package:shamo/theme.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController nameController = TextEditingController(text: '');
+
   TextEditingController usernameController = TextEditingController(text: '');
+
   TextEditingController emailController = TextEditingController(text: '');
+
   TextEditingController passwordController = TextEditingController(text: '');
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleSignUp() async {
-      if(await authProvider.register(
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await authProvider.register(
         name: nameController.text,
         username: usernameController.text,
         email: emailController.text,
         password: passwordController.text,
-      )){
+      )) {
         Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: alertColor,
+          content: Text(
+            'Gagal Register',
+            textAlign: TextAlign.center,
+          ),
+        ));
       }
+
+      setState(() {
+        isLoading = false;
+      });
     }
 
     Widget header() {
@@ -327,6 +354,7 @@ class SignUpPage extends StatelessWidget {
               userNameInput(),
               emailInput(),
               passwordInput(),
+              isLoading ? LoadingButton() : SignUpPage(),
               signInButton(),
               Spacer(),
               footer(),
