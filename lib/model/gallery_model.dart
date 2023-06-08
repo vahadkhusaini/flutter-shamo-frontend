@@ -1,15 +1,15 @@
-class CategoryModel {
+class GalleryModel {
   int id;
-  String name;
+  String url;
 
-  CategoryModel({this.id, this.name});
+  GalleryModel({this.id, this.url});
 
-  CategoryModel.fromJson(Map<String, dynamic> json) {
+  GalleryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
+    url = json['url'];
   }
 
   Map<String, dynamic> toJson() {
-    return {'id': id, 'name': name};
+    return {'id': id, 'url': url};
   }
 }
