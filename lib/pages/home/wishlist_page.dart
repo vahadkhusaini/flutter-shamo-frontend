@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/pages/widgets/wishlist_card.dart';
+import 'package:shamo/provider/wishlist_provider.dart';
 import 'package:shamo/theme.dart';
 
 class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -21,6 +25,7 @@ class WishlistPage extends StatelessWidget {
           width: double.infinity,
           color: backgroundColor3,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
                 'assets/image_wishlist.png',
@@ -37,7 +42,21 @@ class WishlistPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Text('data')
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+                style: TextButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12))),
+                child: Text(
+                  'Explore Store',
+                  style: primaryTextStyle.copyWith(
+                      fontSize: 16, fontWeight: semibold),
+                ),
+              )
             ],
           ),
         ),
@@ -49,20 +68,20 @@ class WishlistPage extends StatelessWidget {
           child: Container(
         color: backgroundColor1,
         child: ListView(
-          padding: EdgeInsets.symmetric(
-            horizontal: defaultMargin,
-          ),
-          children: [
-            WishlistCard(),
-            WishlistCard(),
-            WishlistCard(),
-          ],
-        ),
+            padding: EdgeInsets.symmetric(
+              horizontal: defaultMargin,
+            ),
+            children: wishlistProvider.wishlist
+                .map((product) => WishlistCard(product))
+                .toList()),
       ));
     }
 
     return Column(
-      children: [header(), content()],
+      children: [
+        header(),
+        wishlistProvider.wishlist.length == 0 ? emptyWishList() : content()
+      ],
     );
   }
 }
