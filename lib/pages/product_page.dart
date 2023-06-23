@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo/model/product_model.dart';
+import 'package:shamo/provider/cart_provider.dart';
 // import 'package:shamo/page/detail_chat_page.dart';
 // import 'package:shamo/provider/cart_provider.dart';
 import 'package:shamo/provider/wishlist_provider.dart';
@@ -38,7 +39,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
-    // CartProvider cartProvider = Provider.of<CartProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
 
     Future<void> showSuccessDialog() async {
       return showDialog(
@@ -395,62 +396,62 @@ class _ProductPageState extends State<ProductPage> {
             ),
 
             // NOTE: BUTTONS
-            // Container(
-            //   width: double.infinity,
-            //   margin: EdgeInsets.all(defaultMargin),
-            //   child: Row(
-            //     children: [
-            //       GestureDetector(
-            //         onTap: () {
-            //           Navigator.push(
-            //             context,
-            //             MaterialPageRoute(
-            //               builder: (context) => DetailChatPage(widget.product),
-            //             ),
-            //           );
-            //         },
-            //         child: Container(
-            //           width: 54,
-            //           height: 54,
-            //           decoration: BoxDecoration(
-            //             image: DecorationImage(
-            //               image: AssetImage(
-            //                 'assets/button_chat.png',
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         width: 16,
-            //       ),
-            //       Expanded(
-            //         child: Container(
-            //           height: 54,
-            //           child: TextButton(
-            //             onPressed: () {
-            //               cartProvider.addCart(widget.product);
-            //               showSuccessDialog();
-            //             },
-            //             style: TextButton.styleFrom(
-            //               shape: RoundedRectangleBorder(
-            //                 borderRadius: BorderRadius.circular(12),
-            //               ),
-            //               backgroundColor: primaryColor,
-            //             ),
-            //             child: Text(
-            //               'Add to Cart',
-            //               style: primaryTextStyle.copyWith(
-            //                 fontSize: 16,
-            //                 fontWeight: semibold,
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.all(defaultMargin),
+              child: Row(
+                children: [
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => DetailChatPage(widget.product),
+                  //       ),
+                  //     );
+                  //   },
+                  //   child: Container(
+                  //     width: 54,
+                  //     height: 54,
+                  //     decoration: BoxDecoration(
+                  //       image: DecorationImage(
+                  //         image: AssetImage(
+                  //           'assets/button_chat.png',
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 54,
+                      child: TextButton(
+                        onPressed: () {
+                          cartProvider.addCart(widget.product);
+                          showSuccessDialog();
+                        },
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          backgroundColor: primaryColor,
+                        ),
+                        child: Text(
+                          'Add to Cart',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: semibold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       );

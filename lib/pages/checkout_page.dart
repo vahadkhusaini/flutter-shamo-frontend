@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/pages/widgets/checkout_card.dart';
+import 'package:shamo/provider/cart_provider.dart';
 import 'package:shamo/theme.dart';
 
 class CheckoutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -22,21 +26,17 @@ class CheckoutPage extends StatelessWidget {
             height: 30,
           ),
           Container(
-            margin: EdgeInsets.only(
-              top: defaultMargin,
+            child: Text(
+              'List Items',
+              style:
+                  primaryTextStyle.copyWith(fontSize: 16, fontWeight: medium),
             ),
+          ),
+          Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'List Items',
-                  style: primaryTextStyle.copyWith(
-                      fontSize: 16, fontWeight: medium),
-                ),
-                CheckoutCard(),
-                CheckoutCard(),
-                CheckoutCard(),
-              ],
+              children:
+                  cartProvider.carts.map((cart) => CheckoutCard(cart)).toList(),
             ),
           ),
 
